@@ -1,6 +1,6 @@
 import { Server } from "hyper-express";
 
-import env from "@/configs/env";
+import env from "@/utils/env";
 
 async function main() {
   const app = new Server();

@@ -1,0 +1,14 @@
+.git
+.gitignore
+.dockerignore
+
+dist
+node_modules
+coverage
+
+.env
+
+.editorconfig
+Dockerfile
+README.md
+.eslintrc.js
