@@ -1,0 +1,18 @@
+services:
+  redis:
+    container_name: redis
+    image: redis/redis-stack
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+    restart: on-failure
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: new_db
+    ports:
+      - "3306:3306"
+    restart: on-failure
