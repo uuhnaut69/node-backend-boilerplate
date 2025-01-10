@@ -1,5 +1,5 @@
 import { glob } from "glob";
-import { Server } from "hyper-express";
+import { Router, Server } from "hyper-express";
 import { container } from "tsyringe";
 
 export default async function registerRoutes(app: Server) {
@@ -10,9 +10,11 @@ export default async function registerRoutes(app: Server) {
 
     for (const file of files) {
       const importedFile = await import(`${file}`);
-      const route = container.resolve(importedFile.default) as { route: any };
-      if (route.route) {
-        app.use(route.route);
+      const controller = container.resolve(importedFile.default) as {
+        route: Router;
+      };
+      if (controller?.route) {
+        app.use(controller?.route);
       }
     }
   } catch (error) {

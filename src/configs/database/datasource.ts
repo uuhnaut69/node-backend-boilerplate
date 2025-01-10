@@ -1,7 +1,8 @@
-import env from "@/utils/env";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { SeederOptions } from "typeorm-extension";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
+
+import env from "@/utils/env";
 
 const options: DataSourceOptions & SeederOptions = {
   type: "mysql",
@@ -16,6 +17,8 @@ const options: DataSourceOptions & SeederOptions = {
   entities: [`${__dirname}/../models/**/*.{ts,js}`],
   seeds: [`${__dirname}/seeds/**/*.{ts,js}`],
   extra: {
+    connectionLimit: 10,
+    queueLimit: 0,
     compress: true,
   },
 };

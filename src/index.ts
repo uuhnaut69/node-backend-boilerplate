@@ -12,6 +12,7 @@ import { datasource } from "@/configs/database/datasource";
 import env from "@/utils/env";
 import logger from "@/utils/logger";
 import registerRoutes from "@/utils/route";
+import configureSecurityMiddleware from "@/middlewares/security";
 
 async function main() {
   try {
@@ -20,6 +21,7 @@ async function main() {
 
     const app = new Server();
 
+    configureSecurityMiddleware(app);
     await registerRoutes(app);
 
     await app.listen(Number(env.PORT));
