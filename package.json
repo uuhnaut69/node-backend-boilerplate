@@ -1,33 +1,46 @@
 {
   "name": "server-node-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "NodeJS Backend Starter",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/index.ts\"",
     "build": "tsc && tsc-alias",
     "start": "node dist/index.js",
-    "lint": "eslint '{src,apps,libs,test}/**/*.ts' --fix",
+    "lint": "eslint '{src,apps,libs,test}/**/*.ts'",
+    "format": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./e2e/jest-e2e.json",
-    "seed:run": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run"
+    "seed:run": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run",
+    "prepare": "husky"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "backend",
+    "starter",
+    "boilerplate"
+  ],
+  "author": "uuhnaut69",
+  "repository": "https://github.com/uuhnaut69/node-backend-boilerplate",
+  "license": "MIT",
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.3",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
-    "eslint": "^9.17.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "eslint": "^9.18.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
     "supertest": "^7.0.0",
@@ -68,5 +81,11 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
