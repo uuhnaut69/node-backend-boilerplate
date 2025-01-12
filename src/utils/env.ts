@@ -1,4 +1,4 @@
-import { cleanEnv, num, str, bool } from "envalid";
+import { cleanEnv, num, str } from "envalid";
 
 const env = cleanEnv(process.env, {
   NODE_ENV: str({
@@ -15,9 +15,7 @@ const env = cleanEnv(process.env, {
     default: "info",
     choices: ["error", "warn", "info", "debug"],
   }),
-  ENABLE_SWAGGER: bool({ default: true }),
-  API_RATE_LIMIT: num({ default: 100 }),
-  API_RATE_WINDOW_MS: num({ default: 900000 }), // 15 minutes
+  REDIS_URL: str({ default: "redis://localhost:6379" }),
 });
 
 const envExtended = {

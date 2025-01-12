@@ -7,7 +7,7 @@ export default function configureSecurityMiddleware(app: Server) {
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header(
       "Access-Control-Allow-Headers",
-      "Content-Type, Authorization, Content-Length, X-Requested-With"
+      "Content-Type, Authorization, Content-Length, X-Requested-With",
     );
     next();
   });
@@ -20,7 +20,7 @@ export default function configureSecurityMiddleware(app: Server) {
     res.header("Referrer-Policy", "no-referrer");
     res.header(
       "Content-Security-Policy",
-      "default-src 'self'; script-src 'self'; object-src 'none'"
+      "default-src 'self'; script-src 'self'; object-src 'none'",
     );
     next();
   });

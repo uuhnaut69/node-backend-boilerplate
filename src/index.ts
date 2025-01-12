@@ -8,11 +8,11 @@ import {
   StorageDriver,
 } from "typeorm-transactional";
 
-import { datasource } from "@/configs/database/datasource";
+import datasource from "@/configs/database/datasource";
+import configureSecurityMiddleware from "@/middlewares/cors";
 import env from "@/utils/env";
 import logger from "@/utils/logger";
 import registerRoutes from "@/utils/route";
-import configureSecurityMiddleware from "@/middlewares/security";
 
 async function main() {
   try {

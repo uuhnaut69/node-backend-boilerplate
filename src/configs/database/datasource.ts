@@ -23,4 +23,6 @@ const options: DataSourceOptions & SeederOptions = {
   },
 };
 
-export const datasource = new DataSource(options);
+const datasource = new DataSource(options);
+
+export default datasource;
