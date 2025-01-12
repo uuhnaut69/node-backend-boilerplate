@@ -1,8 +1,8 @@
 # 🚀 Node Backend Boilerplate Starter
 
 ```code
-Hey There! 🙌
-Click that ⭐️ button if you like this boilerplate.
+Hello! 🙌
+If you find this boilerplate useful, please give it a ⭐️.
 ```
 
 A modern Node.js backend starter template built with TypeScript, TypeORM, and Hyper Express.
