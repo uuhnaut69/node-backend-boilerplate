@@ -2,6 +2,8 @@ import { Server } from "hyper-express";
 
 import { glob } from "glob";
 
+import logger from "./logger";
+
 export default async function registerRoutes(app: Server) {
   try {
     const files = await glob(`src/routes/**/*.route.{ts,js}`);
@@ -13,6 +15,6 @@ export default async function registerRoutes(app: Server) {
       }
     }
   } catch (error) {
-    console.error("Error registering routes:", error);
+    logger.error("Error while registering routes", error);
   }
 }
