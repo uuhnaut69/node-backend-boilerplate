@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["jest", "node"],
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts", "**/*.spec.ts"],
+  "exclude": ["node_modules", "dist"]
+}
