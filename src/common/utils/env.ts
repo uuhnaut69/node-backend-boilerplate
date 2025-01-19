@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { cleanEnv, num, str } from "envalid";
 
 const env = cleanEnv(process.env, {
@@ -16,6 +17,10 @@ const env = cleanEnv(process.env, {
     choices: ["error", "warn", "info", "debug"],
   }),
   REDIS_URL: str({ default: "redis://localhost:6379" }),
+  JWT_SECRET: str({ default: 'your-secret-key' }),
+  JWT_EXPIRES_IN: str({ default: '1h' }),
+  JWT_REFRESH_SECRET: str({ default: 'your-refresh-secret-key' }),
+  JWT_REFRESH_EXPIRES_IN: str({ default: '7d' }),
 });
 
 const envExtended = {

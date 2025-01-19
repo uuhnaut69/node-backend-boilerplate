@@ -1,8 +1,9 @@
+import { join } from "path";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { SeederOptions } from "typeorm-extension";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
-import env from "@/utils/env";
+import env from "@/common/utils/env";
 
 const options: DataSourceOptions & SeederOptions = {
   type: "mysql",
@@ -14,13 +15,18 @@ const options: DataSourceOptions & SeederOptions = {
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_NAME,
   namingStrategy: new SnakeNamingStrategy(),
-  entities: [`${__dirname}/../models/**/*.{ts,js}`],
-  seeds: [`${__dirname}/seeds/**/*.{ts,js}`],
+  entities: [
+    join(__dirname, "..", "..", "..", "modules", "**", "models", "*.{ts,js}"),
+  ],
+  seeds: [join(__dirname, "..", "database", "seeds", "*.{ts,js}")],
   extra: {
     connectionLimit: 10,
-    queueLimit: 0,
     compress: true,
   },
+  subscribers: [],
+  migrations: [],
+  migrationsRun: false,
+  timezone: "Z",
 };
 
 const datasource = new DataSource(options);

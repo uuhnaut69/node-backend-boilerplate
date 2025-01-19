@@ -1,6 +1,6 @@
 import { createLogger, format, transports } from "winston";
 
-import env from "@/utils/env";
+import env from "@/common/utils/env";
 
 const customFormat = format.printf(({ timestamp, level, stack, message }) => {
   return `${timestamp} - [${level.toUpperCase()}] - ${stack || message}`;

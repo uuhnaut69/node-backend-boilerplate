@@ -5,7 +5,7 @@ Hello! 🙌
 If you find this boilerplate useful, please give it a ⭐️.
 ```
 
-A modern Node.js backend starter template built with TypeScript, TypeORM, and Hyper Express.
+A modern Node.js backend starter template built with TypeScript, TypeORM, and Ultimate Express.
 
 This boilerplate aims to:
 
@@ -17,7 +17,7 @@ This boilerplate aims to:
 ## Features
 
 - 🏗️ Built with TypeScript
-- ⚡ Hyper Express for high-performance HTTP server
+- ⚡ Ultimate Express for high-performance HTTP server
 - 🗃️ MySQL with TypeORM
 - 🔄 Redis for caching
 - 🔒 Security middleware configured
@@ -67,15 +67,20 @@ This boilerplate aims to:
 
 ```bash
 src/
-  ├── configs/      # Configuration files
-  ├── controllers/  # Request handlers
-  ├── middlewares/  # Custom middlewares
-  ├── models/       # Database models
-  ├── repositories/ # Data access layer
-  ├── routes/       # Route definitions
-  └── utils/        # Utility functions
+  ├── common/           # Common utilities and base classes
+  │   ├── configs/      # Configuration files (database, cache)
+  │   ├── errors/       # Error classes and handling
+  │   ├── middlewares/  # Custom middleware (auth, error)
+  │   ├── models/       # Base entity models
+  │   ├── repositories/ # Base repository
+  │   └── utils/        # Utility functions (jwt, env, logger)
+  ├── modules/          # Feature modules
+  │   ├── auth/         # Authentication module
+  │   ├── health/       # Health check module
+  │   └── users/        # Users module
+  └── index.ts         # Application entry point
 tests/
-  └── e2e/          # End-to-end tests
+  └── e2e/             # End-to-end tests
 ```
 
 ## Contributing
