@@ -1,30 +1,36 @@
 import { Express } from "ultimate-express";
 
 import { glob } from "glob";
+import path from "path";
 
 import logger from "./logger";
 
-export default async function registerRoutes(app: Express) {
+export default async function registerRoutes(app: Express): Promise<void> {
   try {
-    const files = await glob(`src/modules/**/routes/*.{ts,js}`);
+    const baseDir = __dirname.includes("dist") ? "dist" : "src";
+    const files = await glob(`${baseDir}/modules/**/routes/*.{ts,js}`);
 
     for (const filePath of files) {
-      const pathSegments = filePath?.split("/");
-      const fileName = pathSegments[pathSegments?.length - 1];
+      const { name } = path.parse(filePath);
+      const routePath = name.replace(/\./g, "/");
 
-      if (!fileName) {
-        logger.error(`Invalid route file path: ${filePath}`);
-        return;
-      }
+      try {
+        const absolutePath = path.resolve(process.cwd(), filePath);
+        const routeModule = await import(absolutePath);
 
-      const routePath = fileName?.slice(0, -3)?.replace(/\./g, "/");
+        if (!routeModule?.default) {
+          logger.error(`No default export found in route file: ${filePath}`);
+          continue;
+        }
 
-      const routeIndex = await import(`${filePath}`);
-      if (routeIndex) {
-        app.use(`/${routePath}`, routeIndex.default);
+        app.use(`/${routePath}`, routeModule.default);
+      } catch (importError) {
+        logger.error(`Failed to import route file: ${filePath}`, importError);
+        continue;
       }
     }
   } catch (error) {
     logger.error("Error while registering routes", error);
+    throw error;
   }
 }
